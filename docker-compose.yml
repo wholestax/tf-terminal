@@ -1,0 +1,41 @@
+version: "3"
+services:
+  iamlive:
+    build: ./iamlive
+    volumes:
+      - ./iamlive/volume/:/root/.iamlive
+    command:
+      [
+        "--aws-redirect-host",
+        "localstack:4566",
+        "--output-file",
+        "/root/.iamlive/iam.policy",
+        "--account-id",
+        "${IAMLIVE_AWS_ACCOUNT_ID}",
+      ]
+  terminal:
+    build: ./terminal
+    working_dir: /var/app
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./terminal:/var/init
+      - ./iamlive/volume:/usr/local/share/ca-certificates/
+      - ${TERRAFORM_TEMPLATES_DIR}:/var/app
+    environment:
+      - TARGET=${TARGET:-LOCAL}
+    env_file:
+      - "${TARGET:-LOCAL}.env"
+    entrypoint: ["/var/init/entrypoint.sh"]
+    depends_on:
+      - iamlive
+      - localstack
+
+  localstack:
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566" # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559" # external services port range
+    environment:
+      # LocalStack configuration: https://docs.localstack.cloud/references/configuration/
+      - DEBUG=${DEBUG:-0}
