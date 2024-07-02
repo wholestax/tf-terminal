@@ -16,7 +16,9 @@ You need the following installed on your machine:
 1. Clone the repo
 
 ```bash
-git clone ...
+git clone git@github.com:wholestax/tf-terminal.git
+
+cd tf-terminal
 ```
 
 2. Copy sample environment files
