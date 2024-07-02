@@ -116,7 +116,7 @@ provider "aws" {
 }
 ```
 
-See the [example provider configuration](./terraform/iamlive-provider.tf) for a complete example.
+See the [example provider configuration](./blob/main/terraform/iamlive-provider.tf) for a complete example.
 
 If you don't include these settings you may see terraform apply and terraform plan hang as they wait for validation or the account id.
 
