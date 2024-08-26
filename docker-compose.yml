@@ -14,13 +14,17 @@ services:
         "${IAMLIVE_AWS_ACCOUNT_ID}",
       ]
   terminal:
-    build: ./terminal
+    build:
+      context: ./terminal
+      args:
+        - PRODUCT=terraform
+        - VERSION=1.9.0
     working_dir: /var/app
     tty: true
     stdin_open: true
     volumes:
       - ./terminal:/var/init
-      - ./iamlive/volume:/usr/local/share/ca-certificates/
+      - ./iamlive/volume/cert:/usr/local/share/ca-certificates/
       - ${TERRAFORM_TEMPLATES_DIR}:/var/app
     environment:
       - TARGET=${TARGET:-LOCAL}
