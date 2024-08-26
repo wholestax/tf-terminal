@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH="/root/.oh-my-zsh"
 
 
@@ -62,7 +62,7 @@ ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git web-search history-substring-search
+  web-search history-substring-search
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -132,7 +132,7 @@ print_local_message() {
 }
 
 if [[ "${TARGET}" == "AWS" ]]; then
-  print_prod_message
+ print_prod_message
 else
   print_local_message
 fi

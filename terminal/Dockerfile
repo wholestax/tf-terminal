@@ -7,8 +7,6 @@ ADD ./.zshrc /root/.zshrc
 RUN apk add zsh-syntax-highlighting
 RUN echo "source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> /root/.zshrc
 
-# Always run zsh to get color coded cues about environment
-RUN rm /bin/sh 
 
 ENTRYPOINt ["/bin/zsh"]
 
