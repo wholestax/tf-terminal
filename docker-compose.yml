@@ -3,13 +3,15 @@ services:
   iamlive:
     build: ./iamlive
     volumes:
-      - ./iamlive/volume/:/root/.iamlive
+      - ./iamlive/volume/cert/:/root/.iamlive
+      - ./iamlive/volume/policy:/root/policy
+
     command:
       [
         "--aws-redirect-host",
         "localstack:4566",
         "--output-file",
-        "/root/.iamlive/iam.policy",
+        "/root/policy/policy.json",
         "--account-id",
         "${IAMLIVE_AWS_ACCOUNT_ID}",
       ]

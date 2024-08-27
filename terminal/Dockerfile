@@ -1,6 +1,6 @@
 FROM hashicorp/terraform:1.9.0
 
-RUN apk add --no-cache aws-cli zsh zsh-vcs ncurses
+RUN apk add --no-cache aws-cli zsh zsh-vcs ncurses jq
 RUN sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
 ADD ./.zshrc /root/.zshrc
